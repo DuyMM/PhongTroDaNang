@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "941822379147",
+    "firebase_url": "https://demoduan2-a526a.firebaseio.com",
+    "project_id": "demoduan2-a526a",
+    "storage_bucket": "demoduan2-a526a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941822379147:android:b55435b3e965a3c9",
+        "android_client_info": {
+          "package_name": "com.example.maimanhduy.demoduan2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941822379147-6luclt7r1oq1kr92qvcdvdl8t5djs2e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD342xy5S_BIQs5g5zNCTa9LJMxdAhlFb0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941822379147:android:24ab6abf2a025873",
+        "android_client_info": {
+          "package_name": "com.example.maimanhduy.phongtrodanang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941822379147-6luclt7r1oq1kr92qvcdvdl8t5djs2e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD342xy5S_BIQs5g5zNCTa9LJMxdAhlFb0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

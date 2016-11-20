@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
+            android:title="Thêm Phòng Trọ" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
+            android:title="Kinh Nghiệm Thuê Trọ" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
+            android:title="Hỗ Trợ Phản Hồi" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Cài Đặt" />
+    </group>
+
+    <item android:title="Khác">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
+                android:title="Giới Thiệu" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
+                android:title="Nhà Phát Triển" />
+        </menu>
+    </item>
+
+</menu>

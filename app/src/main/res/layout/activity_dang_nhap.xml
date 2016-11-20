@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_dang_nhap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+    tools:context="com.example.maimanhduy.phongtrodanang.DangNhap">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Đăng Nhập"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:textStyle="normal|bold"
+                android:typeface="monospace" />
+
+            <EditText
+                android:id="@+id/edtTaiKhoan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Tài Khoản"
+                android:inputType="textPersonName"
+                android:textAllCaps="true"
+                android:typeface="monospace" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Mật Khẩu"
+                android:inputType="textPersonName"
+                android:textAllCaps="true"
+                android:typeface="monospace" />
+
+            <Button
+                android:id="@+id/btDangNhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/nutstyle"
+                android:elevation="0dp"
+                android:focusable="true"
+                android:text="ĐĂNG NHẬP"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:typeface="monospace" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Chưa có tài khoản ?"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/btDKonDangNhap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/nutstyle"
+            android:elevation="0dp"
+            android:focusable="true"
+            android:text="ĐĂNG KÝ TÀI KHOẢN"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:typeface="monospace" />
+    </LinearLayout>
+</RelativeLayout>
