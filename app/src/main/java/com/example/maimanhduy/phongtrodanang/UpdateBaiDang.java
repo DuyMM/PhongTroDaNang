@@ -65,7 +65,8 @@ public class UpdateBaiDang extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImages();
+                //uploadImages();
+                upDateData();
             }
         });
     }
@@ -100,8 +101,10 @@ public class UpdateBaiDang extends AppCompatActivity {
         mData.child(key).child("ThongTinChung").setValue(edtThongtin.getText().toString());
         mData.child(key).child("DiaChi").setValue(edtDiaChi.getText().toString());
         mData.child(key).child("dientich").setValue(edtDientich.getText().toString());
-        mData.child(key).child("linkPicture").setValue(linkImage);
-        finish();
+        // mData.child(key).child("linkPicture").setValue(linkImage);
+        Intent myIntent = new Intent(this, QuanLyThongTinCaNhan.class);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(myIntent);
     }
 
     public void init() {

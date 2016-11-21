@@ -60,7 +60,9 @@ public class TabListBaiDangCuaToi extends Activity {
                             public void onClick(DialogInterface dialog, int id) {
                                 mData.child("BaiDang").child(keynguoiDung.get(position).toString()).removeValue();
                                 mData.child("NguoiDung").child(Username).child("BaiDangCuaToi").child(keynguoiDung.get(position).toString()).removeValue();
-                                myArrayAdapter.notifyDataSetChanged();
+                                Intent myIntent = new Intent(TabListBaiDangCuaToi.this, QuanLyThongTinCaNhan.class);
+                                myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(myIntent);
                                 dialog.cancel();
                             }
                         });
@@ -71,6 +73,7 @@ public class TabListBaiDangCuaToi extends Activity {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent myIntent = new Intent(TabListBaiDangCuaToi.this, UpdateBaiDang.class);
                                 myIntent.putExtra("key", keynguoiDung.get(position).toString());
+                                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(myIntent);
                                 dialog.cancel();
                             }
