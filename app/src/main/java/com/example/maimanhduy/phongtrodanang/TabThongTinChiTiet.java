@@ -57,6 +57,11 @@ public class TabThongTinChiTiet extends AppCompatActivity {
     public void updateInformation() {
         mData.child(name).child("diachi").setValue(edDiaChi.getText().toString());
         mData.child(name).child("sdt").setValue(edSoDienThoai.getText().toString());
+        SharedPreferences prefs = getSharedPreferences(STRING_KEY_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit= prefs.edit();
+        edit.putString("sdt",edSoDienThoai.getText().toString());
+        edit.putString("diachi",edDiaChi.getText().toString());
+        edit.commit();
         Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
     }
 }

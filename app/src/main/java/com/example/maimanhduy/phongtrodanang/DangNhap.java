@@ -75,7 +75,7 @@ public class DangNhap extends Activity {
                                     saveEdit.putString("sdt", dataSnapshotCha.child("sdt").getValue().toString());
                                     saveEdit.putString("diachi", dataSnapshotCha.child("diachi").getValue().toString());
                                     saveEdit.apply();
-                                    Intent myIntent = new Intent(DangNhap.this, QuanLyThongTinCaNhan.class);
+                                    Intent myIntent = new Intent(DangNhap.this, MainActivity.class);
                                     startActivity(myIntent);
                                 } else {
                                     Toast.makeText(DangNhap.this, "Tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();

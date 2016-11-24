@@ -45,31 +45,34 @@ public class DangKy extends Activity {
         edtDiachi = (EditText) findViewById(R.id.edtDiaChi);
     }
 
-    public void Dangkytk() {
-        check = true;
-        Username = edtTenTaiKhoan.getText().toString();
-        pass = edtMatKhau.getText().toString();
-        sdt = edtSDT.getText().toString();
-        diachi = edtDiachi.getText().toString();
-        mData.child("NguoiDung").child(Username).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() == null) {
-                    NguoiDung user = new NguoiDung(diachi, pass, sdt);
-                    mData.child("NguoiDung").child(Username).setValue(user);
-                    Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    check = false;
-                    finish();
+        public void Dangkytk() {
+            check = true;
+            Username = edtTenTaiKhoan.getText().toString();
+            pass = edtMatKhau.getText().toString();
+            sdt = edtSDT.getText().toString();
+            diachi = edtDiachi.getText().toString();
+            if (Username.equals("")|| pass.equals("")||sdt.equals("")||diachi.equals("")){
+                Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            }else {
+            mData.child("NguoiDung").child(Username).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getValue() == null) {
+                        NguoiDung user = new NguoiDung(diachi, pass, sdt);
+                        mData.child("NguoiDung").child(Username).setValue(user);
+                        Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                        check = false;
+                        finish();
+                    }
+                    if (check) {
+                        Toast.makeText(DangKy.this, "Tên này đã có người đăng ký !!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                if (check) {
-                    Toast.makeText(DangKy.this, "Tên này đã có người đăng ký !!", Toast.LENGTH_SHORT).show();
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
+            });
+        }}
 }

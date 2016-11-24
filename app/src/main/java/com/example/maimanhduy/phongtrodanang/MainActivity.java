@@ -15,11 +15,10 @@ public class MainActivity extends TabActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         tabHost = getTabHost();
-        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.ic_format_list_bulleted_red_500_24dp)).setContent(
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.ic_list_tab_24dp)).setContent(
                 new Intent(this, ListBaiDang.class)));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.ic_pin_drop_red_500_24dp)).setContent(
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.ic_map_tab)).setContent(
                 new Intent(this, MapsActivityMarker.class)));
         getDataFromStogare();
     }
@@ -28,13 +27,12 @@ public class MainActivity extends TabActivity {
         SharedPreferences prefs = getSharedPreferences(STRING_KEY_NAME, MODE_PRIVATE);
         data = prefs.getString("name", "");
         if (data.equals("")) {
-            tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.login_01)).setContent(
+            tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.ic_lock_tab)).setContent(
                     new Intent(this, DangNhap.class)));
-            //Dang Nhap
         } else {
-            tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.quanly)).setContent(
+            tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.ic_account_circle_black_24dp)).setContent(
                     new Intent(this, QuanLyThongTinCaNhan.class)));
-            //Quan ly
+            tabHost.setCurrentTab(2);
         }
     }
 }

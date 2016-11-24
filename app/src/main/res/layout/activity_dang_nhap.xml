@@ -55,7 +55,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:hint="Mật Khẩu"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:textAllCaps="true"
                 android:typeface="monospace" />
 

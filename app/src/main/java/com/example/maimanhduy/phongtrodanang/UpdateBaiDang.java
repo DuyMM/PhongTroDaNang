@@ -3,7 +3,6 @@ package com.example.maimanhduy.phongtrodanang;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +47,7 @@ public class UpdateBaiDang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_bai_dang);
+        storage = FirebaseStorage.getInstance();
         SharedPreferences shared = getSharedPreferences(STRING_KEY_NAME, MODE_PRIVATE);
         mData = FirebaseDatabase.getInstance().getReference("BaiDang");
         init();
@@ -65,8 +66,7 @@ public class UpdateBaiDang extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //uploadImages();
-                upDateData();
+                uploadImages();
             }
         });
     }
@@ -84,6 +84,7 @@ public class UpdateBaiDang extends AppCompatActivity {
                     edtThongtin.setText(dataSnapshot.child("ThongTinChung").getValue().toString());
                     edtDiaChi.setText(dataSnapshot.child("DiaChi").getValue().toString());
                     Glide.with(UpdateBaiDang.this).load(dataSnapshot.child("linkPicture").getValue().toString()).into(imgAnh);
+
                 }
 
             }
@@ -101,8 +102,11 @@ public class UpdateBaiDang extends AppCompatActivity {
         mData.child(key).child("ThongTinChung").setValue(edtThongtin.getText().toString());
         mData.child(key).child("DiaChi").setValue(edtDiaChi.getText().toString());
         mData.child(key).child("dientich").setValue(edtDientich.getText().toString());
-        // mData.child(key).child("linkPicture").setValue(linkImage);
-        Intent myIntent = new Intent(this, QuanLyThongTinCaNhan.class);
+        if (linkImage.equals("")){
+        }else {
+            mData.child(key).child("linkPicture").setValue(linkImage);
+        }
+        Intent myIntent = new Intent(this, MainActivity.class);
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(myIntent);
     }
@@ -138,26 +142,33 @@ public class UpdateBaiDang extends AppCompatActivity {
         storageRef = storage.getReferenceFromUrl("gs://demoduan2-a526a.appspot.com");
         Calendar calendar = Calendar.getInstance();
         StorageReference mountainsRef = storageRef.child("image" + key + calendar.getTimeInMillis() + ".jpeg");
-        Bitmap bitmap = ((BitmapDrawable) imgAnh.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-        // so 50 bi la chat luong hinh anh.
-        byte[] data = baos.toByteArray();
+        boolean hasDrawable = (imgAnh.getDrawable() != null);
+        if(hasDrawable) {
+            Bitmap bitmap = ((GlideBitmapDrawable) imgAnh.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+            // so 50 bi la chat luong hinh anh.
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = mountainsRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toast.makeText(UpdateBaiDang.this, "Hình ảnh bị lỗi" + exception, Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    linkImage = downloadUrl.toString();
+                    upDateData();
+                }
+            });
+        }
+        else {
+            linkImage = "";
+            upDateData();
+        }
 
-        UploadTask uploadTask = mountainsRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(UpdateBaiDang.this, "Hình ảnh bị lỗi" + exception, Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                linkImage = downloadUrl.toString();
-                upDateData();
-            }
-        });
     }
 }
